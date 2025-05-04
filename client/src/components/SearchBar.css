@@ -1,0 +1,109 @@
+/* Search Bar Styles */
+.search-filter-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.search-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: 50px;
+  overflow: hidden;
+  background-color: rgba(26, 26, 46, 0.8);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  height: 55px !important; /* Optimal height */
+}
+
+.search-bar:hover, .search-bar:focus-within {
+  box-shadow: 0 6px 16px rgba(108, 92, 231, 0.2);
+  border-color: rgba(108, 92, 231, 0.3);
+  transform: translateY(-2px);
+}
+
+.search-icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c5ce7;
+  font-size: 1.3rem !important; /* Adjusted font size */
+}
+
+.search-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0 1.25rem 0 3.5rem !important; /* Force padding */
+  color: var(--text-color);
+  font-size: 1.1rem !important; /* Slightly smaller font size */
+  letter-spacing: 0.5px;
+  height: 55px !important; /* Optimal height */
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+/* Light mode styles for search bar */
+body.light .search-bar {
+  background-color: #f0f2f5;
+  border: 1px solid #e0e4e8;
+}
+
+body.light .search-bar:hover, body.light .search-bar:focus-within {
+  border-color: rgba(108, 92, 231, 0.5);
+}
+
+body.light .search-icon {
+  color: #6c5ce7;
+}
+
+body.light .search-input {
+  color: #333;
+}
+
+body.light .search-input::placeholder {
+  color: #888;
+}
+
+/* Filter button styles */
+.filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #6c5ce7;
+  color: white;
+  border: none;
+  padding: 0 1.5rem;
+  border-radius: 50px;
+  font-size: 1rem !important; /* Slightly smaller font size */
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(108, 92, 231, 0.2);
+  height: 55px !important; /* Optimal height */
+}
+
+.filter-btn:hover {
+  background-color: #5649c0;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(108, 92, 231, 0.3);
+}
+
+.filter-icon {
+  font-size: 1.1rem !important; /* Adjusted font size */
+  margin-right: 5px;
+}

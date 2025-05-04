@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Feedback Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #6c63ff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Create Feedback Notification</h1>
+    <p>Use this form to manually create a feedback notification for testing purposes.</p>
+    
+    <div class="form-group">
+        <label for="userId">Student User ID:</label>
+        <input type="number" id="userId" placeholder="Enter student user ID">
+    </div>
+    
+    <div class="form-group">
+        <label for="eventId">Event ID:</label>
+        <input type="number" id="eventId" placeholder="Enter event ID">
+    </div>
+    
+    <div class="form-group">
+        <label for="message">Notification Message:</label>
+        <input type="text" id="message" value="Please provide feedback for the event that you attended">
+    </div>
+    
+    <button onclick="createNotification()">Create Notification</button>
+    
+    <div id="result" class="result"></div>
+    
+    <script>
+        async function createNotification() {
+            const userId = document.getElementById('userId').value;
+            const eventId = document.getElementById('eventId').value;
+            const message = document.getElementById('message').value;
+            
+            if (!userId || !eventId) {
+                alert('Please enter both User ID and Event ID');
+                return;
+            }
+            
+            try {
+                // First login as admin
+                const loginResponse = await fetch('http://localhost:5000/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: 'admin@campus.edu',
+                        password: 'admin123'
+                    })
+                });
+                
+                const loginData = await loginResponse.json();
+                
+                if (!loginResponse.ok) {
+                    throw new Error(loginData.message || 'Login failed');
+                }
+                
+                const token = loginData.token;
+                
+                // Create notification directly in the database
+                const response = await fetch('http://localhost:5000/api/users/notifications', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        userId: parseInt(userId),
+                        eventId: parseInt(eventId),
+                        message
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.message || 'Failed to create notification');
+                }
+                
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = `
+                    <h3>Success!</h3>
+                    <p>Notification created successfully.</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+                resultDiv.style.display = 'block';
+                
+            } catch (error) {
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = `
+                    <h3>Error</h3>
+                    <p>${error.message}</p>
+                `;
+                resultDiv.style.display = 'block';
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

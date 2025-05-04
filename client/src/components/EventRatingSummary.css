@@ -1,0 +1,123 @@
+.event-rating-summary {
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.rating-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.rating-card {
+  background: linear-gradient(145deg, #222, #2a2a2a);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.rating-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.rating-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(108, 99, 255, 0.05), transparent);
+  z-index: 0;
+}
+
+.rating-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.rating-card-header span {
+  font-weight: 600;
+  color: #f1f1f1;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.rating-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+.rating-stars {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.star {
+  font-size: 1.2rem;
+}
+
+.star.filled {
+  color: #ffd700;
+}
+
+.star.half-filled {
+  color: #ffd700;
+}
+
+.star.empty {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.rating-value {
+  font-weight: 700;
+  font-size: 2rem;
+  color: #f1f1f1;
+  background: linear-gradient(45deg, #6c63ff, #8a84ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Light mode styles */
+body.light .rating-card {
+  background: linear-gradient(145deg, #f8f9fa, #ffffff);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.light .rating-card::before {
+  background: linear-gradient(45deg, rgba(108, 99, 255, 0.05), transparent);
+}
+
+body.light .rating-card-header span {
+  color: #333;
+}
+
+body.light .star.empty {
+  color: rgba(0, 0, 0, 0.1);
+}
+
+body.light .rating-value {
+  color: #333;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .rating-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}

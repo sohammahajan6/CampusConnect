@@ -1,0 +1,26 @@
+{
+  "name": "campus-event-management",
+  "version": "1.0.0",
+  "description": "A centralized web application for campus event management",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install"
+  },
+  "keywords": [
+    "campus",
+    "events",
+    "management",
+    "react",
+    "node",
+    "express",
+    "postgresql"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
