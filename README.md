@@ -12,7 +12,7 @@ A centralized web application that allows students, faculty, and organizers to m
 - Notifications for event updates
 - Search and Filter functionality
 - Dark/Light Mode Toggle
-- Responsive Design for mobile and desktop
+- Responsive Design for desktop
 
 ## Tech Stack
 
@@ -29,10 +29,6 @@ A centralized web application that allows students, faculty, and organizers to m
 - JWT authentication
 - RESTful API design
 
-### Deployment
-- Vercel for frontend
-- Render for backend
-- Supabase for database
 
 ## Prerequisites
 
