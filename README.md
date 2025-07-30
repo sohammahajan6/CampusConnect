@@ -105,6 +105,4 @@ The system comes with a default admin account:
 - **Organizer**: Can create and manage events
 - **Admin**: Has full access to all features, including approving events and managing users
 
-## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
